@@ -8,7 +8,7 @@
         var smallCanvas = document.getElementById("smallCanvas");
         if (smallCanvas.getContext) {
           var ctxSmall = smallCanvas.getContext("2d");
-          // 작은 캔버스에 그리기 작업
+          // 작은 캔버스에 그리기
           ctxSmall.fillStyle = "red";
           ctxSmall.fillRect(10, 10, 50, 50);
         }
@@ -16,12 +16,13 @@
         var scorecanvas = document.getElementById("scorecanvas");
         if (scorecanvas.getContext) {
           var ctxScore = scorecanvas.getContext("2d");
-          // 스코어 캔버스에 그리기 작업
-          ctxScore.font = "20px Arial";  // 폰트 설정
-          ctxScore.fillText("Score : 1000", 10, 20); // 텍스트 출력
+          // 스코어 캔버스에 그리기
+          ctxScore.font = "20px Arial";  
+          ctxScore.fillText("Score : 1000", 10, 20);
         }
       }
     </script>
+    <!-- 스타일 -->
     <style type="text/css">
       body {
         display: flex;
