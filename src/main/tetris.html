@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Tetris Canvas</title>
+    <script type="text/javascript">
+      function draw() {
+        var smallCanvas = document.getElementById("smallCanvas");
+        if (smallCanvas.getContext) {
+          var ctxSmall = smallCanvas.getContext("2d");
+          // 작은 캔버스에 그리기 작업
+          ctxSmall.fillStyle = "red";
+          ctxSmall.fillRect(10, 10, 50, 50);
+        }
+
+        var scorecanvas = document.getElementById("scorecanvas");
+        if (scorecanvas.getContext) {
+          var ctxScore = scorecanvas.getContext("2d");
+          // 스코어 캔버스에 그리기 작업
+          ctxScore.font = "20px Arial";  // 폰트 설정
+          ctxScore.fillText("Score : 1000", 10, 20); // 텍스트 출력
+        }
+      }
+    </script>
+    <style type="text/css">
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+
+      /* 큰 캔버스 스타일 */
+      #canvas {
+        position: relative;
+        border: 1px solid black;
+        width: 500px;
+        height: 700px;
+      }
+
+      /* 캔버스 위에 표시할 작은 캔버스들 */
+      #canvasWrapper {
+        position: relative;
+      }
+
+      /* 작은 캔버스 스타일 */
+      #smallCanvas {
+        position: absolute; 
+        top: 10px;
+        left: 10px;
+        border: 1px solid black;
+      }
+
+      /* 스코어 캔버스 스타일 */
+      #scorecanvas {
+        position: absolute;
+        top: 10px;
+        right: 10px; 
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body onload="draw();">
+    <!-- 큰 캔버스 -->
+    <div id="canvasWrapper">
+      <canvas id="canvas" width="500" height="700">
+      </canvas>
+
+      <!-- 작은 캔버스 (미리보기) -->
+      <canvas id="smallCanvas" width="170" height="100"></canvas>
+
+      <!-- 스코어 캔버스 -->
+      <canvas id="scorecanvas" width="150" height="30"></canvas>
+    </div>
+  </body>
+</html>
