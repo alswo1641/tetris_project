@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Tetris Canvas</title>
+  <script type="text/javascript">
+    let tetrisX = 150; 
+    let tetrisY = 150; 
+
+    // 큰 캔버스 크기
+    const canvasWidth = 500;
+    const canvasHeight = 700;
+
+
+    const tetrisWidth = 100;
+    const tetrisHeight = 150;
+
+    function drawTetris(ctx, x, y) {
+      ctx.fillStyle = "blue";
+      ctx.clearRect(0, 0, canvasWidth, canvasHeight); 
+      ctx.fillRect(x, y, 50, 50); // 상단 가로 막대
+      ctx.fillRect(x + 50, y + 0, 50, 150); // 중앙 세로 막대
+    }
+      // 미리 보기 캔버스 모양
+    function draw() {
+      var smallCanvas = document.getElementById("smallCanvas");
+      if (smallCanvas.getContext) {
+        var ctxSmall = smallCanvas.getContext("2d");
+        ctxSmall.fillStyle = "red";
+        ctxSmall.fillRect(10, 10, 50, 50);
+      }
+
+      // 스코어 캔버스 텍스트
+      var scorecanvas = document.getElementById("scorecanvas");
+      if (scorecanvas.getContext) {
+        var ctxScore = scorecanvas.getContext("2d");
+        ctxScore.font = "20px Arial";
+        ctxScore.fillText("Score : 1000", 10, 20);
+      }
+
+     
+      var canvas = document.getElementById("canvas");
+      if (canvas.getContext) {
+        var ctx = canvas.getContext("2d");
+
+
+        drawTetris(ctx, tetrisX, tetrisY);
+
+        // 키보드 이벤트 등록
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "ArrowUp") {
+            if (tetrisY > 0) tetrisY -= 10; 
+          } else if (event.key === "ArrowDown") {
+            if (tetrisY + tetrisHeight < canvasHeight) tetrisY += 10;
+          } else if (event.key === "ArrowLeft") {
+            if (tetrisX > 0) tetrisX -= 10; 
+          } else if (event.key === "ArrowRight") {
+            if (tetrisX + tetrisWidth < canvasWidth) tetrisX += 10; 
+          }
+
+
+          drawTetris(ctx, tetrisX, tetrisY);
+        });
+      }
+    }
+  </script>
+  <!-- 스타일 -->
+  <style type="text/css">
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    #canvas {
+      border: 1px solid black;
+      width: 500px;
+      height: 700px;
+    }
+
+    #canvasWrapper {
+      position: relative;
+    }
+
+    #smallCanvas {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      border: 1px solid black;
+    }
+
+    #scorecanvas {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body onload="draw();">
+  <div id="canvasWrapper">
+    <canvas id="canvas" width="500" height="700"></canvas>
+    <canvas id="smallCanvas" width="170" height="100"></canvas>
+    <canvas id="scorecanvas" width="150" height="30"></canvas>
+  </div>
+</body>
+
+</html>
