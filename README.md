@@ -20,6 +20,7 @@
 ## 서버 구축 (1일)
 
 서버는 간단하게 Firebase를 통해 구축을했습니다.
+tetris-project-99a63.web.app
 
 ## 문서 정리 (1일)
 
